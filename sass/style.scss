@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i');
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+@import "variables";
+@import "mixins";
+@import "normalize";
+@import "layout";
 
+/*Colors*/
 $color-black: #333333;
 $color-darkgrey: #979797;
 $color-lightgrey: #d9d9d9;
@@ -11,61 +16,25 @@ $color-lightorange: #FFA200;
 $color-green: #04AE00;
 $color-blue: #56819F;
 
-* {
-	box-sizing: border-box;
-}
+* {box-sizing: border-box;}
 
 body {
 	margin: 0;
 	padding: 0;
+	width: 100%;
 	font-family: 'Open Sans',sans-serif;
 }
 
-.container {
+.container-fluid {
 	width: 100%;
 	margin: 0 auto;
-  	max-width: 1170px;
-  	padding-left: 15px;
-  	padding-right: 15px;
-  	border: 1px solid $color-lightgrey;
+  	max-width: 1200px;
   	background-color: $color-beige;
 }
 
-.container-fluid {
-  	width: 100%;
-  	display: -webkit-flex;
-	display: 	flex;
-	padding-top: 15px;
-	padding-left: 15px;
-  	padding-right: 15px;
-  	background-color: #fff;
-  	border: 1px solid $color-lightgrey;
-}
-
-#black {
-	background-color: black;
-}
-
-#beige {
-	background-color: $color-beige;
-}
 .row {
   display: flex;
   flex-wrap: wrap;
-}
-
-.row::before,
-.row::after {
-	content:"";
-	display: table;
-	clear: both;
- }
-
-.clearfix::before,
-.clearfix::after {
-	content:"";
-	display: table;
-	clear: both;
 }
 
 .topbar {
@@ -73,21 +42,29 @@ body {
   	background-color: #fff;
   	line-height: 50px;
   	padding: 0;
-  	min-width: 1140px;
+  	width: 100%;
+  	max-width: 1200px;
+  	position: fixed;
+  	z-index: 0;
   	display: -webkit-flex;
 	display: 		flex;
 	-webkit-align-items: flex-end;
           justify-content: flex-end;
+    flex: 100%;
+    border: 1px solid $color-lightgrey;
     border-left: 1px solid $color-lightgrey;
 }
 
 #sidebar {
-	position: absolute;
+	position: fixed;
+	z-index: 1;
 	top: 0;
+	left: 0;
 	display: -webkit-flex;
 	display: 		flex;
-	-webkit-align-items: center;
-          justify-content: center;
+	-webkit-align-items: flex-start;
+          justify-content: flex-start;
+    flex: 20%;
 }
 
 .hamburger {
@@ -99,6 +76,7 @@ body {
 	background: transparent;
 	position: relative;
 	display: inline-block;
+	cursor: pointer;
 	&:before, &:after {
 		content: "";
 		position: absolute;
@@ -117,18 +95,23 @@ body {
 	background-color: $color-black;
   	height: 100%;
   	position: fixed;
-  	text-align: left;
+  	width: 200px;
+  	text-align: center;
   	padding: 0;
   	margin: 0;
   	list-style-type: none;
   	display: -webkit-flex;
 	display: flex;
-	-webkit-align-items: center;
-          justify-content: center;
+    flex: 20%;
 	ul {
 		margin: 0;
 		padding: 0;
 		float: right;
+		list-style-type: none;
+		&:hover:before {
+         		height: 50px;
+    			border-left: 3px solid $color-darkorange;
+    		}
 	}
     ul li  {
          	display: inline-block;
@@ -136,41 +119,42 @@ body {
          	height: 50px;
          	padding: 0 10px;
          	line-height: 50px;
-         	&:hover {
-         		background: $color-lightgrey;
-         		color: #fff;
-         		}
+         	min-width: 120px;
     }
     ul ul li {
-       			display: block;
-       			text-align: left;
+       			display: flex;
+       			justify-content: flex-start;
        			height: 50px;
          		line-height: 50px;
+         		width: 180px;
          		&:hover {
          		background: $color-lightgrey;
          		color: #fff;
          		}
-         		&:hover:before {
+         		&:hover {
+         		background: $color-lightgrey;
+         		color: #fff;
+         		}
+         	&:hover:before {
     				content: "";
     				position: absolute;
     				height: 40px;
-    				width: 4px;
+    				width: 3px;
     				background-color: $color-darkorange;
-    				border: 1px solid $color-darkorange;
-    				margin: 0;
+    				margin: 0 auto;
     			}
     }
     ul ul li a  {
     			position: relative;
     			height: 50px;
+    			min-width: 120px;
+    			padding: 0 10px;
     			text-decoration: none;
             	color: $color-darkgrey;
-            	display: inline-block;
+            	display: block;
               	line-height: 50px;
                 transition: all .3s ease-out; 
-                text-align: left;
-                justify-content: flex-end;
-                padding-right: 10px;
+                text-align: center;
                 &:hover {
                 	color: #fff;
                 } 
@@ -184,7 +168,7 @@ body {
             	display: inline-block;
             	text-align: left;
             	float: left;
-            	padding: 0 5px;
+            	padding: 10 0px;
     }
     ul ul li svg {
     			height: 35px;
@@ -340,7 +324,9 @@ body {
   		@extend.signups;
 }
 
-.general, .links, .banners, .payouthis, .detailsta {
+.generalstart, .links, .banners, .payouthis, .detailsta {
+		border-bottom: 1px solid $color-lightgrey;
+		heigt: 20vh;
 		h3 {
 		text-align: left;
 		color: $color-darkgrey;
@@ -348,14 +334,65 @@ body {
 }
 
 .general {
-	height: 130vh;
+	height: 100vh;
 	background-color: #fff;
-	padding: 15 30px;
- }
+	margin-top: 70px;
+	margin-left: 170px;
+	margin-right: 20px;
+	line-height: 50px;
+	border: 1px solid $color-lightgrey;
+	display: -webkit-flex;
+  	display:         flex;
+  	-webkit-align-items: center;
+          align-items: center;
+  	-webkit-justify-content: center;
+          justify-content: center;
+}
+
+.links {
+	@extend.general;
+	height: 110vh;
+}
+
+#scroll-links {
+	table {
+		tr {
+			display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+		td {
+			a {
+			&:hover:after {
+				content: "";
+				position: absolute;
+				top: 10px;
+				left: 30px;
+				.connect {
+					visibility: visible;
+				}
+			}
+	}	}
+	}
+	}
+}
 
 .banners {
-	display: none;
+		@extend.general;
+		height: 110vh;
 		&.show {display: flex;}
+}
+
+.detailsta {
+	@extend.general;
+	height: 210vh;
+}
+
+.payouthis {
+	height: 120vh;
+	@extend.general;
 }
 
 .bannersnav.show {
@@ -390,8 +427,13 @@ ul.pagination li a:hover:not(.active) {
 }
 
 .formdata {
+	@extend.general;
+	height: 150vh;
 	background-color: #fff;
-	display: none;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+          justify-content: center;
 		h3 {
 			color: $color-darkgrey;
 			text-align: left;
@@ -407,20 +449,30 @@ input[type="text"], input[type="email"], input[type="number"], input[type="passw
   font-size: 20px;
   font-color: black;
   background-color: #fff;
-  border-radius: 15px;
+  border-radius: 5px;
   color: $color-darkgrey;
   outline: none;
 }
 
 label {
 	color: $color-darkgrey;
+	font-weight: bold;
 	display: block;
-	width: 100%;
 }
 
-.submit {
+.field {
+	button {
 	background-color: $color-darkorange;
 	color: #fff;
+  	font-size: 16px;
+  	padding: 10px;
+  	text-align: center;
+  	border-radius: 7%;
+  	border: $color-darkorange;
+  		&:hover {
+  				background-color: $color-lightorange;
+  		}
+  	}
 }
 
 .overlay {
@@ -430,7 +482,7 @@ label {
   	z-index: 9999;
   	width: 100%;
   	height: 100%;
-  	background-color: #fff;
+  	background-color: rgba(0,0,0,0.5);
   	justify-content: center;
   	align-items: center;
   	overflow: auto;
@@ -468,6 +520,8 @@ label {
 
 hr {
 	color: $color-lightgrey;
+	display: flex;
+	flex: 70%;
 }
 
 .earning {
@@ -477,17 +531,27 @@ hr {
 }
 
 .timeline {
- 		border: 2px solid $color-lightgrey;
- 		display: inline-block;
+	display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+	flex: 100%;
+	table {
+		border: 2px solid $color-lightgrey;
+ 			display: -webkit-flex;
  		border-radius: 12px;
  		height: 40px;
 	 	font-size: 16px;
 	 	padding: 5px;
-	 	margin-top: 20px;
-	 	margin-bottom: 20px;
+	}
 }
 
 .visit {
+	display: 	flex;
+	justify-content: center;
+	align-items: center;
 		table {
 			height: 50px;
 			width: 100%;
@@ -501,43 +565,37 @@ hr {
 
 .date {
 	float: left;
-	padding: 10px;
-	width: 100px;
-	height: 25px;
+	text-align: left;
+	height: 45px;
 	color: black;	
 }
 
 .calendar {	
 			border-left: 2px solid $color-lightgrey;
-			display: inline-block;
 			color: black;
-			height: 25px;
-			width: 200px;
+			height: 45px;
+			width: 100%;
+}
+.calendar2 {
 			svg {
-				margin-top: -20px;
-				margin-left: 100px;
 				float: left;
-				height: 20px;
-				width: 50px;
-				display: inline-block;
+				height: 25px;
 				path {
 					fill: black;
 			}
 		}
 }
-.buttonref {
-	display: inline-block;
-	margin-left: -40px;
-}
 
 .refresh {
-		width: 40px;
-  		height: 40px;
+		margin-left: 150px;
+		width: 45px;
+  		height: 45px;
   		border-radius: 30%;
   		background-color: $color-darkorange;
   		position: relative;
+  		left: 100px;
+  		top: -15px;
   		display: inline-block;
-  		top: 5px;
   		svg {
   			path {
   				fill: #fff;
@@ -589,325 +647,11 @@ hr {
   		@extend.signups;
 }
 
-
 [class*='col-'] {
 	min-height: 1px;
 	display: inline-block;
 	text-align: center;
-	padding: 3px;
 	width: 100%;
-}
-
-.col-sm-1 {
-  flex: 0 0 8.33333%;
-  max-width: 8.33333%;
-}
-
-.col-sm-2 {
-  flex: 0 0 16.66667%;
-  max-width: 16.66667%;
-}
-
-.col-sm-3 {
-  flex: 0 0 25%;
-  max-width: 25%;
-}
-
-.col-sm-4 {
-  flex: 0 0 33.33333%;
-  max-width: 33.33333%;
-}
-
-.col-sm-5 {
-  flex: 0 0 41.66667%;
-  max-width: 41.66667%;
-}
-
-.col-sm-6 {
-  flex: 0 0 50%;
-  max-width: 50%;
-}
-
-.col-sm-7 {
-  flex: 0 0 58.33333%;
-  max-width: 58.33333%;
-}
-
-.col-sm-8 {
-  flex: 0 0 66.66667%;
-  max-width: 66.66667%;
-}
-
-.col-sm-9 {
-  flex: 0 0 75%;
-  max-width: 75%;
-}
-
-.col-sm-10 {
-  flex: 0 0 83.33333%;
-  max-width: 83.33333%;
-}
-
-.col-sm-11 {
-  flex: 0 0 91.66667%;
-  max-width: 91.66667%;
-}
-
-.col-sm-12 {
-  flex: 0 0 100%;
-  max-width: 100%;
-}
-
-@for $i from 1 through 12 {
-  .col-sm-#{$i} {
-    $width: 100% / 12 * $i;
-    flex: 0 0 $width;
-    max-width: $width;
-  }
-}
-
-@mixin grid($prefix) {
-  @for $i from 1 through 12 {
-    .col-#{$prefix}-#{$i} {
-      $width: 100% / 12 * $i;
-      flex: 0 0 $width;
-      max-width: $width;
-    }
-  }
-}
-
-.col-md-1 {
-  flex: 0 0 8.33333%;
-  max-width: 8.33333%;
-}
-
-.col-md-2 {
-  flex: 0 0 16.66667%;
-  max-width: 16.66667%;
-}
-
-.col-md-3 {
-  flex: 0 0 25%;
-  max-width: 25%;
-}
-
-.col-md-4 {
-  flex: 0 0 33.33333%;
-  max-width: 33.33333%;
-}
-
-.col-md-5 {
-  flex: 0 0 41.66667%;
-  max-width: 41.66667%;
-}
-
-.col-md-6 {
-  flex: 0 0 50%;
-  max-width: 50%;
-}
-
-.col-md-7 {
-  flex: 0 0 58.33333%;
-  max-width: 58.33333%;
-}
-
-.col-md-8 {
-  flex: 0 0 66.66667%;
-  max-width: 66.66667%;
-}
-
-.col-md-9 {
-  flex: 0 0 75%;
-  max-width: 75%;
-}
-
-.col-md-10 {
-  flex: 0 0 83.33333%;
-  max-width: 83.33333%;
-}
-
-.col-md-11 {
-  flex: 0 0 91.66667%;
-  max-width: 91.66667%;
-}
-
-.col-md-12 {
-  flex: 0 0 100%;
-  max-width: 100%;
-}
-
-@for $i from 1 through 12 {
-  .col-md-#{$i} {
-    $width: 100% / 12 * $i;
-    flex: 0 0 $width;
-    max-width: $width;
-  }
-}
-
-@mixin grid($prefix) {
-  @for $i from 1 through 12 {
-    .col-#{$prefix}-#{$i} {
-      $width: 100% / 12 * $i;
-      flex: 0 0 $width;
-      max-width: $width;
-    }
-  }
-}
-
-.col-lg-1 {
-  flex: 0 0 8.33333%;
-  max-width: 8.33333%;
-}
-
-.col-lg-2 {
-  flex: 0 0 16.66667%;
-  max-width: 16.66667%;
-}
-
-.col-lg-3 {
-  flex: 0 0 25%;
-  max-width: 25%;
-}
-
-.col-lg-4 {
-  flex: 0 0 33.33333%;
-  max-width: 33.33333%;
-}
-
-.col-lg-5 {
-  flex: 0 0 41.66667%;
-  max-width: 41.66667%;
-}
-
-.col-lg-6 {
-  flex: 0 0 50%;
-  max-width: 50%;
-}
-
-.col-lg-7 {
-  flex: 0 0 58.33333%;
-  max-width: 58.33333%;
-}
-
-.col-lg-8 {
-  flex: 0 0 66.66667%;
-  max-width: 66.66667%;
-}
-
-.col-lg-9 {
-  flex: 0 0 75%;
-  max-width: 75%;
-}
-
-.col-lg-10 {
-  flex: 0 0 83.33333%;
-  max-width: 83.33333%;
-}
-
-.col-lg-11 {
-  flex: 0 0 91.66667%;
-  max-width: 91.66667%;
-}
-
-.col-lg-12 {
-  flex: 0 0 100%;
-  max-width: 100%;
-}
-
-@for $i from 1 through 12 {
-  .col-lg-#{$i} {
-    $width: 100% / 12 * $i;
-    flex: 0 0 $width;
-    max-width: $width;
-  }
-}
-
-@mixin grid($prefix) {
-  @for $i from 1 through 12 {
-    .col-#{$prefix}-#{$i} {
-      $width: 100% / 12 * $i;
-      flex: 0 0 $width;
-      max-width: $width;
-    }
-  }
-}
-
-.col-xl-1 {
-  flex: 0 0 8.33333%;
-  max-width: 8.33333%;
-}
-
-.col-xl-2 {
-  flex: 0 0 16.66667%;
-  max-width: 16.66667%;
-}
-
-.col-xl-3 {
-  flex: 0 0 25%;
-  max-width: 25%;
-}
-
-.col-xl-4 {
-  flex: 0 0 33.33333%;
-  max-width: 33.33333%;
-}
-
-.col-xl-5 {
-  flex: 0 0 41.66667%;
-  max-width: 41.66667%;
-}
-
-.col-xl-6 {
-  flex: 0 0 50%;
-  max-width: 50%;
-}
-
-.col-xl-7 {
-  flex: 0 0 58.33333%;
-  max-width: 58.33333%;
-}
-
-.col-xl-8 {
-  flex: 0 0 66.66667%;
-  max-width: 66.66667%;
-}
-
-.col-xl-9 {
-  flex: 0 0 75%;
-  max-width: 75%;
-}
-
-.col-xl-10 {
-  flex: 0 0 83.33333%;
-  max-width: 83.33333%;
-}
-
-.col-xl-11 {
-  flex: 0 0 91.66667%;
-  max-width: 91.66667%;
-}
-
-.col-xl-12 {
-  flex: 0 0 100%;
-  max-width: 100%;
-}
-
-@for $i from 1 through 12 {
-  .col-xl-#{$i} {
-    $width: 100% / 12 * $i;
-    flex: 0 0 $width;
-    max-width: $width;
-  }
-}
-
-@mixin grid($prefix) {
-  @for $i from 1 through 12 {
-    .col-#{$prefix}-#{$i} {
-      $width: 100% / 12 * $i;
-      flex: 0 0 $width;
-      max-width: $width;
-    }
-  }
 }
 
 .col-offset-1 {margin-left: 8.33%;}
@@ -948,12 +692,9 @@ hr {
 .trash svg {
 		height: 20px;
 		width: 20px;
-		display: none;
+		visibility: hidden;
 		path {
 			fill: $color-darkgrey;
-		}
-		&:hover {
-			display: inline-block;
 		}
 
 }	
@@ -961,19 +702,26 @@ hr {
 .connect svg {
 		height: 20px;
 		width: 20px;
-		display: none;
+		visibility: hidden;
 		path {
 			fill: $color-darkorange;
-		}
-		&:hover {
-			display: inline-block;
 		}
 }
 
 .scroll-wrapper {
 	margin-top: 0;
 	table {
+		width: 100%;
+		margin: 10px auto;
+    	border-collapse: collapse;
+		th {
+			padding: 5px;
+			a {
+				text-decoration: none;
+			}
+		}
 		td {
+			padding: 5px;
 			text-align: left;
 			color: $color-darkgrey;
 			a {
@@ -983,12 +731,9 @@ hr {
 			}
 		}
 		tr {
-		margin-right: 100px;
-		margin-left: 100px;
 		max-width: 1100px;
 		height: 40px;
 		border-bottom: 1px solid $color-lightgrey;
-		display: block;
 		text-align: left;
 		&:hover {
 			background-color: $color-lightgrey;
@@ -1008,22 +753,287 @@ tr.rowdetails {
 	}
 }
 
-.detailsta {
-	width: 100%;
-	float: left;
-  	margin-left: 140px;
+.col-sm-1 {
+  		flex: 0 0 8.33333%;
+  		max-width: 8.33333%;
+	}
+	.col-sm-2 {
+  		flex: 0 0 16.66667%;
+  		max-width: 16.66667%;
+	}
+	.col-sm-3 {
+  		flex: 0 0 25%;
+  		max-width: 25%;
+	}
+	.col-sm-4 {
+  		flex: 0 0 33.33333%;
+  		max-width: 33.33333%;
+	}
+	.col-sm-5 {
+  		flex: 0 0 41.66667%;
+  		max-width: 41.66667%;
+	}
+	.col-sm-6 {
+  		flex: 0 0 50%;
+  		max-width: 50%;
+	}
+	.col-sm-7 {
+  		flex: 0 0 58.33333%;
+  		max-width: 58.33333%;
+	}
+	.col-sm-8 {
+  		flex: 0 0 66.66667%;
+  		max-width: 66.66667%;
+	}
+	.col-sm-9 {
+  		flex: 0 0 75%;
+  		max-width: 75%;
+	}
+	.col-sm-10 {
+  		flex: 0 0 83.33333%;
+  		max-width: 83.33333%;
+	}
+	.col-sm-11 {
+  		flex: 0 0 91.66667%;
+  		max-width: 91.66667%;
+	}
+	.col-sm-12 {
+  		flex: 0 0 100%;
+  		max-width: 100%;
+	}
+	@for $i from 1 through 12 {
+  		.col-sm-#{$i} {
+    		$width: 100% / 12 * $i;
+    		flex: 0 0 $width;
+    		max-width: $width;
+  		}
+	}
+	@mixin grid($prefix) {
+		@for $i from 1 through 12 {
+    		.col-sm-#{$prefix}-#{$i} {
+      			$width: 100% / 12 * $i;
+      			flex: 0 0 $width;
+      			max-width: $width;
+    		}
+		}
 }
+
+.col-md-1 {
+  		flex: 0 0 8.33333%;
+  		max-width: 8.33333%;
+	}
+	.col-md-2 {
+  		flex: 0 0 16.66667%;
+  		max-width: 16.66667%;
+	}
+	.col-md-3 {
+  		flex: 0 0 25%;
+  		max-width: 25%;
+	}
+	.col-md-4 {
+  		flex: 0 0 33.33333%;
+		max-width: 33.33333%;
+	}
+	.col-md-5 {
+		flex: 0 0 41.66667%;
+		max-width: 41.66667%;
+	}
+	.col-md-6 {
+  		flex: 0 0 50%;
+		max-width: 50%;
+	}
+	.col-md-7 {
+		flex: 0 0 58.33333%;
+		max-width: 58.33333%;
+	}
+	.col-md-8 {
+		flex: 0 0 66.66667%;
+		max-width: 66.66667%;
+	}
+	.col-md-9 {
+		flex: 0 0 75%;
+		max-width: 75%;
+	}
+	.col-md-10 {
+		flex: 0 0 83.33333%;
+		max-width: 83.33333%;
+	}
+	.col-md-11 {
+		flex: 0 0 91.66667%;
+		max-width: 91.66667%;
+	}
+	.col-md-12 {
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+	@for $i from 1 through 12 {
+  		.col-md-#{$i} {
+    		$width: 100% / 12 * $i;
+    		flex: 0 0 $width;
+    		max-width: $width;
+  		}
+	}
+	@mixin grid($prefix) {
+		@for $i from 1 through 12 {
+    		.col-#{$prefix}-#{$i} {
+      			$width: 100% / 12 * $i;
+      			flex: 0 0 $width;
+      			max-width: $width;
+    		}
+  		}
+	}
+
+.col-lg-1 {
+		flex: 0 0 8.33333%;
+		max-width: 8.33333%;
+	}
+	.col-lg-2 {
+		flex: 0 0 16.66667%;
+		max-width: 16.66667%;
+	}
+	.col-lg-3 {
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
+	.col-lg-4 {
+		flex: 0 0 33.33333%;
+		max-width: 33.33333%;
+	}
+	.col-lg-5 {
+		flex: 0 0 41.66667%;
+		max-width: 41.66667%;
+	}
+	.col-lg-6 {
+		flex: 0 0 50%;
+		max-width: 50%;
+	}
+	.col-lg-7 {
+		flex: 0 0 58.33333%;
+		max-width: 58.33333%;
+	}
+	.col-lg-8 {
+		flex: 0 0 66.66667%;
+		max-width: 66.66667%;
+	}
+	.col-lg-9 {
+		flex: 0 0 75%;
+		max-width: 75%;
+	}
+	.col-lg-10 {
+		flex: 0 0 83.33333%;
+		max-width: 83.33333%;
+	}
+	.col-lg-11 {
+		flex: 0 0 91.66667%;
+		max-width: 91.66667%;
+	}
+	.col-lg-12 {
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+	@for $i from 1 through 12 {
+		col-lg-#{$i} {
+    		$width: 100% / 12 * $i;
+    		flex: 0 0 $width;
+    		max-width: $width;
+  		}
+	}
+	@mixin grid($prefix) {
+		@for $i from 1 through 12 {
+    		.col-#{$prefix}-#{$i} {
+      			$width: 100% / 12 * $i;
+    			flex: 0 0 $width;
+    			max-width: $width;
+    		}
+		}
+	}
+
+	.col-xl-1 {
+		flex: 0 0 8.33333%;
+		max-width: 8.33333%;
+	}
+	.col-xl-2 {
+		flex: 0 0 16.66667%;
+		max-width: 16.66667%;
+	}
+	.col-xl-3 {
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
+	.col-xl-4 {
+		flex: 0 0 33.33333%;
+		max-width: 33.33333%;
+	}
+	.col-xl-5 {
+		flex: 0 0 41.66667%;
+		max-width: 41.66667%;
+	}
+	.col-xl-6 {
+		flex: 0 0 50%;
+		max-width: 50%;
+	}
+	.col-xl-7 {
+		flex: 0 0 58.33333%;
+		max-width: 58.33333%;
+	}
+	.col-xl-8 {
+		flex: 0 0 66.66667%;
+		max-width: 66.66667%;
+	}
+	.col-xl-9 {
+		flex: 0 0 75%;
+		max-width: 75%;
+	}
+	.col-xl-10 {
+		flex: 0 0 83.33333%;
+		max-width: 83.33333%;
+	}
+	.col-xl-11 {
+		flex: 0 0 91.66667%;
+		max-width: 91.66667%;
+	}
+	.col-xl-12 {
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+	@for $i from 1 through 12 {
+		.col-xl-#{$i} {
+    		$width: 100% / 12 * $i;
+    		flex: 0 0 $width;
+    		max-width: $width;
+  		}
+	}
+	@mixin grid($prefix) {
+		@for $i from 1 through 12 {
+    		.col-#{$prefix}-#{$i} {
+      			$width: 100% / 12 * $i;
+      			flex: 0 0 $width;
+    			max-width: $width;
+    		}
+  		}
+	}
+
 
 @media (max-width: 767px) {
 	@include grid('sm');
-	#topbar {
+	body {
+		font-size: 1.2em;
+		max-width: 767px;
+	}
+	.container-fluid {
 		width: 100%;
+		max-width: 767px;
+		flex-direction: column;
+	}
+	.topbar {
     	margin-bottom: 10px;
     	display: block;
+    	width: 100%;
 	}
 	#sidebar {
 		display: block;
 		text-align: center;
+		display: none;
 	}
 	.nav {
 		display: none;
@@ -1033,12 +1043,27 @@ tr.rowdetails {
 			display: block;
 			text-align: center;
 			float: none;
+			width: 65%;
 		}
 		ul li {
 			display: block;
+			text-alig: center;
+			margin-left: 62%;
+			margin-right: 62%;
+			&:hover {
+				display: none;
+			}
 		}
 		ul li a {
 			display: block;
+			&:hover {
+				display: none;
+			}
+		}
+		ul ul li {
+			&:hover:before {
+				display: none;
+			}
 		}
 		ul li h1 {
 			display: block;
@@ -1049,6 +1074,9 @@ tr.rowdetails {
 			display: block;
 			text-align: center;
 			float: none;
+			&:hover {
+				display: none;
+			}
 		}
 		li ul {
 			text-align: center;
@@ -1060,7 +1088,7 @@ tr.rowdetails {
 		display: block;
 	}
 	.manager {
-		display:block;
+		display: block;
 		text-align: center;
 	}
 	.name {
@@ -1081,16 +1109,22 @@ tr.rowdetails {
 	}
 	.general {
 		display: block;
+		width: 100%;
+		padding: 0 20px;
 	}
 	.links {
 		display: block;
+		width: 100%;
+		padding: 0 20px;
 	}
 	.timeline {
 		display: block;
-		width: 100%;
 	}
 	.signups {
 		display: block;
+		&:hover {
+			display: none;
+		}
 	}
 	.ftd {
 		display: block;
@@ -1102,19 +1136,34 @@ tr.rowdetails {
 	.date {
 		float: none;
 	}
-	.calendar {
+	.calendar2 {
 		float: none;
 	}
 	.addnew {
 		float: none;
 		display: block;
+		&:hover {
+			display: none;
+		}
 	}
 	.addnew2 {
 		display: block;
 		float: none;
+		&:hover {
+			display: none;
+		}
+	}
+	ul.pagination li a {
+		float: none;
+	}
+	.banners {
+		width: 100%;
 	}
 	.detailsta {
-		float: none;
+		width: 100%;
+	}
+	.formdata {
+		width: 100%;
 	}
 	[class*="col-"] {
     	width: 100%;
@@ -1122,39 +1171,56 @@ tr.rowdetails {
     	padding: 12px;
     	float: left;
     }
-    .scroll-wrapper {
-    	.chart {
-    		padding: 0 20px;
-	    img {
-    		max-width: 100%;
-    		height: auto;
-    		width: auto;
-    	}
-	}
-	}
 	.scroll-wrapper {
   		display: block;
-  		width: 100%;
   		overflow-x: auto;
   		}
 	.scroll-wrapper ul {
   		width: 100%;
   		max-width: 100%;
 	}
-	.scroll-wrapper table {
-  		width: 100%;
-  		max-width: 100%;
+	.scroll-wrapper {
+		table {
+  			width: 100%;
+  			max-width: 100%;
+  			tr {
+  				&:hover {
+  					display: none;
+  				}
+  			}
+  		}
 	}
 }
 
-@media(min-width: 768px) {
-  @include grid('md');
+@media(min-width: 768px) and (max-width: 991px) {
+  	@include grid('md');
 }
 
-@media(min-width: 992px) {
-  @include grid('lg');
+@media(min-width: 992px) and (max-width: 1199px) {
+	@include grid('lg');
+	
 }
 
 @media(min-width: 1200px) {
-  @include grid('xl');
+	@include grid('xl');
+	.container-fluid {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+	.nav {
+		text-align: center;
+		width: 100%;
+		ul li {
+			display: inline-block;
+		}
+		ul li a {
+			float: right;
+			display: inline-block;
+			&:hover {
+				text-align: center;
+				float: right;
+				display: inline-block;
+			}
+		}
+	}
 }
