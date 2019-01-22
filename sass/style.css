@@ -389,6 +389,8 @@ body {
   display: -webkit-flex;
   display: flex;
   flex: 20%; }
+  .nav.show {
+    display: flex; }
   .nav ul {
     margin: 0;
     padding: 0;
@@ -767,9 +769,6 @@ ul.pagination li a:hover:not(.active) {
     color: #979797;
     text-align: left; }
 
-.field {
-  width: 800px; }
-
 input[type="text"], input[type="email"], input[type="number"], input[type="password"] {
   padding: 5px 10px;
   font-size: 20px;
@@ -803,16 +802,18 @@ label {
   padding: 5px;
   margin-bottom: 5px; }
 
-.field button {
-  background-color: #F58220;
-  color: #fff;
-  font-size: 16px;
-  padding: 10px;
-  text-align: center;
-  border-radius: 7%;
-  border: #F58220; }
-  .field button:hover {
-    background-color: #FFA200; }
+.field {
+  width: 800px; }
+  .field button {
+    background-color: #F58220;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 7%;
+    border: #F58220; }
+    .field button:hover {
+      background-color: #FFA200; }
 
 .overlay {
   position: fixed;

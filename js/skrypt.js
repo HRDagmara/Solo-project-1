@@ -35,7 +35,7 @@ var chart = new Chart(ctx, {
 });
 
 function toggleNav(visible) {
-  document.getElementByClassName('nav').classList.toggle('show', visible);
+  document.querySelector('nav').classList.toggle('show', visible);
 };
 
 toggleNav();
@@ -47,7 +47,7 @@ document.querySelector('hamburger').addEventListener('click', function(e) {
 });
 
 function toggleBanners(visible) {
-  document.querySelector('.banners').classList.toggle('show', visible);
+  document.querySelector('banners').classList.toggle('show', visible);
 }
 
 toggleBanners();
@@ -57,6 +57,38 @@ document.querySelector('bannersnav').addEventListener('click', function(e) {
   toggleBanners();
 });
 
+function toggleDetailsta(visible) {
+  document.querySelector('detailsta').classList.toggle('show', visible);
+}
+
+toggleDetailsta();
+
+document.querySelector('detailsnav').addEventListener('click', function(e) {
+  e.preventDefault();
+  toggleDetailsta();
+});
+
+function togglePersonalData(visible) {
+  document.querySelector('formdata').classList.toggle('show', visible);
+}
+
+togglePersonalData();
+
+document.querySelector('personalnav').addEventListener('click', function(e) {
+  e.preventDefault();
+  togglePersonalData();
+});
+
+function togglePayout(visible) {
+  document.querySelector('.payouthis').classList.toggle('show', visible);
+}
+
+togglePayout();
+
+document.querySelector('payoutnav').addEventListener('click', function(e) {
+  e.preventDefault();
+  togglePayout();
+});
 
 function closeModal() {
   document.getElementById('overlay').classList.remove('show');
