@@ -1,85 +1,6 @@
 'use strict';
 
-function toggleNav(visible) {
-  document.querySelector('.nav').classList.toggle('show', visible)
-}
-
-toggleNav();
-
-document.querySelector('.hamburger').addEventListener('click', function(e) {
-  e.preventDefault();
-  console.log("test");
-  toggleNav();
-});
-
-function toggleBanners(visible) {
-	document.querySelector('.banners').classList.toggle('show', visible)
-}
-
-toggleBanners();
-
-document.querySelector('.bannersnav').addEventListener('click', function(e) {
-  e.preventDefault();
-  toggleBanners();
-});
-
-
-function closeModal() {
-  document.getElementById('overlay').classList.remove('show')
-}
-
-document.querySelectorAll('#overlay .js--close-modal').forEach(function(btn) {
-  btn.addEventListener('click', function(e) {
-    e.preventDefault();
-    closeModal();
-  })
-})
-
-document.querySelector('#overlay').addEventListener('click', function(e) {
-  if(e.target === this) {
-    closeModal();
-  }
-})
-
-document.addEventListener('keyup', function(e) {
-  if(e.keyCode === 27) {
-    closeModal();
-  }
-})
-
-
-function openModal(modal) {
-  document.querySelectorAll('#overlay > #myChat').forEach(function(modal) {
-    modal.classList.remove('show')
-  })
-  document.querySelector('#overlay').classList.add('show')
-  document.querySelector(modal).classList.add('show')
-}
-
-openModal('#myChat');
-
-function openModal(modal) {
-  document.querySelectorAll('#overlay > #myLogin').forEach(function(modal) {
-    modal.classList.remove('show')
-  })
-  document.querySelector('#overlay').classList.add('show')
-  document.querySelector(modal).classList.add('show')
-}
-
-openModal('#myLogin');
-
-function openModal(modal) {
-  document.querySelectorAll('#overlay > #myQuit').forEach(function(modal) {
-    modal.classList.remove('show')
-  })
-  document.querySelector('#overlay').classList.add('show')
-  document.querySelector(modal).classList.add('show')
-}
-
-openModal('#myQuit');
-
 var ctx = document.getElementById('myChart').getContext('2d');
-
 var chart = new Chart(ctx, {
     // 1
     type: 'bar',
@@ -112,3 +33,81 @@ var chart = new Chart(ctx, {
         }]
     },
 });
+
+function toggleNav(visible) {
+  document.getElementByClassName('nav').classList.toggle('show', visible);
+};
+
+toggleNav();
+
+document.querySelector('hamburger').addEventListener('click', function(e) {
+  e.preventDefault();
+  console.log("test");
+  toggleNav();
+});
+
+function toggleBanners(visible) {
+  document.querySelector('.banners').classList.toggle('show', visible);
+}
+
+toggleBanners();
+
+document.querySelector('bannersnav').addEventListener('click', function(e) {
+  e.preventDefault();
+  toggleBanners();
+});
+
+
+function closeModal() {
+  document.getElementById('overlay').classList.remove('show');
+};
+
+document.querySelectorAll('#overlay .js--close-modal').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    closeModal();
+  })
+});
+
+document.querySelector('#overlay').addEventListener('click', function(e) {
+  if(e.target === this) {
+    closeModal();
+  }
+});
+
+document.addEventListener('keyup', function(e) {
+  if(e.keyCode === 27) {
+    closeModal();
+  }
+});
+
+
+function openModal(modal) {
+  document.querySelectorAll('#overlay > #myChat').forEach(function(modal) {
+  modal.classList.remove('show');
+  });
+  document.querySelector('#overlay').classList.add('show');
+  document.querySelector('modal').classList.add('show');
+};
+
+openModal('#myChat');
+
+function openModal(modal) {
+  document.querySelectorAll('#overlay > #myLogin').forEach(function(modal) {
+    modal.classList.remove('show');
+  });
+  document.querySelector('#overlay').classList.add('show');
+  document.querySelector('modal').classList.add('show');
+};
+
+openModal('#myLogin');
+
+function openModal(modal) {
+  document.querySelectorAll('#overlay > #myQuit').forEach(function(modal) {
+    modal.classList.remove('show');
+  });
+  document.querySelector('#overlay').classList.add('show');
+  document.querySelector('modal').classList.add('show');
+}
+
+openModal('#myQuit');
