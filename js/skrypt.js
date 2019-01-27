@@ -1,6 +1,7 @@
 'use strict';
 
 var ctx = document.getElementById('myChart').getContext('2d');
+
 var chart = new Chart(ctx, {
     // 1
     type: 'bar',
@@ -35,63 +36,71 @@ var chart = new Chart(ctx, {
 });
 
 function toggleNav(visible) {
-  document.querySelector('nav').classList.toggle('show', visible);
+  document.querySelector('.nav').classList.toggle('show', visible);
 };
 
 toggleNav();
 
-document.querySelector('hamburger').addEventListener('click', function(e) {
+document.querySelector('.hamburger').addEventListener('click', function(e) {
   e.preventDefault();
   console.log("test");
   toggleNav();
 });
 
 function toggleBanners(visible) {
-  document.querySelector('banners').classList.toggle('show', visible);
+  document.querySelector('.banners').classList.toggle('show', visible);
+  document.querySelector('.general').classList.remove('show');
+  document.querySelector('.links').classList.remove('show');
 }
 
 toggleBanners();
 
-document.querySelector('bannersnav').addEventListener('click', function(e) {
+document.querySelector('.bannersnav').addEventListener('click', function(e) {
   e.preventDefault();
   toggleBanners();
 });
 
 function toggleDetailsta(visible) {
-  document.querySelector('detailsta').classList.toggle('show', visible);
+  document.querySelector('.detailsta').classList.toggle('show', visible);
+  document.querySelector('.general').classList.remove('show');
+  document.querySelector('.links').classList.remove('show');
 }
 
 toggleDetailsta();
 
-document.querySelector('detailsnav').addEventListener('click', function(e) {
+document.querySelector('.detailsnav').addEventListener('click', function(e) {
   e.preventDefault();
   toggleDetailsta();
 });
 
 function togglePersonalData(visible) {
-  document.querySelector('formdata').classList.toggle('show', visible);
+  document.querySelector('.formdata').classList.toggle('show', visible);
+  document.querySelector('.general').classList.remove('show');
+  document.querySelector('.links').classList.remove('show');
 }
 
 togglePersonalData();
 
-document.querySelector('personalnav').addEventListener('click', function(e) {
+document.querySelector('.personalnav').addEventListener('click', function(e) {
   e.preventDefault();
   togglePersonalData();
 });
 
 function togglePayout(visible) {
   document.querySelector('.payouthis').classList.toggle('show', visible);
+  document.querySelector('.general').classList.remove('show');
+  document.querySelector('.links').classList.remove('show');
 }
 
 togglePayout();
 
-document.querySelector('payoutnav').addEventListener('click', function(e) {
+document.querySelector('.payoutnav').addEventListener('click', function(e) {
   e.preventDefault();
   togglePayout();
 });
 
 function closeModal() {
-  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('#overlay').classList.remove('show');
 };
 
 document.querySelectorAll('#overlay .js--close-modal').forEach(function(btn) {
@@ -102,15 +111,19 @@ document.querySelectorAll('#overlay .js--close-modal').forEach(function(btn) {
 });
 
 document.querySelector('#overlay').addEventListener('click', function(e) {
-  if(e.target === this) {
+  
+  if (e.target === this) {
     closeModal();
   }
+
 });
 
 document.addEventListener('keyup', function(e) {
-  if(e.keyCode === 27) {
+  
+  if (e.keyCode === 27) {
     closeModal();
   }
+
 });
 
 
@@ -119,7 +132,7 @@ function openModal(modal) {
   modal.classList.remove('show');
   });
   document.querySelector('#overlay').classList.add('show');
-  document.querySelector('modal').classList.add('show');
+  document.querySelector('.modal').classList.add('show');
 };
 
 openModal('#myChat');
@@ -129,7 +142,7 @@ function openModal(modal) {
     modal.classList.remove('show');
   });
   document.querySelector('#overlay').classList.add('show');
-  document.querySelector('modal').classList.add('show');
+  document.querySelector('.modal').classList.add('show');
 };
 
 openModal('#myLogin');
@@ -139,7 +152,7 @@ function openModal(modal) {
     modal.classList.remove('show');
   });
   document.querySelector('#overlay').classList.add('show');
-  document.querySelector('modal').classList.add('show');
+  document.querySelector('.modal').classList.add('show');
 }
 
 openModal('#myQuit');

@@ -110,10 +110,6 @@ body {
 		float: right;
 		list-style-type: none;
 		margin-bottom: 15px;
-		&:hover:before {
-         		height: 50px;
-    			border-left: 3px solid $color-darkorange;
-    	}
 	}
     ul li  {
         display: inline-block;
@@ -137,7 +133,9 @@ body {
         &:hover:before {
     		content: "";
     		position: absolute;
-    		height: 40px;
+    		top: 0;
+    		left: 0;
+    		bottom: 0;
     		width: 3px;
     		background-color: $color-darkorange;
     		margin: 0 auto;
@@ -259,7 +257,7 @@ body {
 }
 
 .notification, .quit {
-	@extend.wallet;
+	@extend .wallet;
 	border-left: 1px solid $color-lightgrey;
 }
 
@@ -311,21 +309,21 @@ body {
 }
 
 .orangecircle {
-  	@extend.bluecircle;
+  	@extend .bluecircle;
   	background-color: $color-darkorange;
 }
 
 .ftd {
-  	@extend.signups;
+  	@extend .signups;
 }
 
 .greencircle {
-  	@extend.bluecircle;
+  	@extend .bluecircle;
 	background-color: $color-green;
 }
 
 .earned {
-  	@extend.signups;
+  	@extend .signups;
 }
 
 .generalstart, .linksstart, .bannersstart, .payouthisstart, .detailstastart, .formdatastart {
@@ -361,11 +359,11 @@ hr {
 }
 
 .links {
-	@extend.general;
+	@extend .general;
 	height: 120vh;
 }
 
-#scroll-links {
+#scrolllinks {
 	display: -webkit-flex;
   	display:         flex;
   	-webkit-align-items: center;
@@ -390,6 +388,12 @@ hr {
          	border-bottom: 1px solid $color-lightgrey;
 			&:hover {
 			background-color: $color-lightgrey;
+				.waste {
+					display: block;
+				}
+			}
+			.waste {
+				display: none;
 			}
 	 	}
 	 	td { 
@@ -419,18 +423,18 @@ hr {
 }
 
 .banners {
-	@extend.general;
+	@extend .general;
 	height: 85vh;
 	display: none;
 	&.show {display: flex;}
 }
 
-#scroll-banners {
-	@extend#scroll-links;
+#scrollbanners {
+	@extend #scrolllinks;
 }
 
-#scroll-payout {
-	@extend#scroll-links;
+#scrollpayout {
+	@extend #scrolllinks;
 	table {
 		td {
 			padding: 5px;
@@ -468,8 +472,8 @@ hr {
 	}
 }
 
-#scroll-detailsta {
-	@extend#scroll-links;
+#scrolldetailsta {
+	@extend #scrolllinks;
 	table {
 		td {
 			padding: 5px;
@@ -508,7 +512,7 @@ hr {
 }
 
 .detailsta {
-	@extend.general;
+	@extend .general;
 	display: none;
 	&.show {
 		display: flex;
@@ -517,7 +521,7 @@ hr {
 
 .payouthis {
 	height: 120vh;
-	@extend.general;
+	@extend .general;
 	display: none;
 	&.show {
 		display: flex;
@@ -570,7 +574,7 @@ ul.pagination li a:hover:not(.active) {
 }
 
 .formdata {
-	@extend.general;
+	@extend .general;
 	height: 110vh;
 	background-color: #fff;
 	display: none;
@@ -795,21 +799,21 @@ label {
 }
 
 .orangecircle {
-  	@extend.bluecircle;
+  	@extend .bluecircle;
   	background-color: $color-darkorange;
 }
 
 .ftd {
-  	@extend.signups;
+  	@extend .signups;
 }
 
 .greencircle {
-  	@extend.bluecircle;
+  	@extend .bluecircle;
 	background-color: $color-green;
 }
 
 .earned {
-  	@extend.signups;
+  	@extend .signups;
 }
 
 [class*='col-'] {
@@ -848,7 +852,7 @@ label {
 }
 
 .addnew2 {
-	@extend.addnew;
+	@extend .addnew;
 }
 
 .trash svg {
@@ -1171,17 +1175,22 @@ label {
 		margin: 0;
 	}
 	.topbar {
-    	margin-bottom: 10px;
-    	display: inline-block;
-    	width: 100%;
+    	display: block;
+    	width: 15%;
+	}
+	.hamburger {
+		display: none;
+		&.show{display: block;}
 	}
 	#sidebar {
 		display: none;
 		text-align: center;
+		&.show{display: block;}
 	}
 	.nav {
 		display: none;
 		text-align: center;
+		width: 15%;
 		&.show{display: block;}
 		ul {
 			display: block;
@@ -1228,9 +1237,6 @@ label {
 			float: none;
 		}
 	}
-	.hamburger {
-		display: block;
-	}
 	.manager {
 		display: block;
 		text-align: center;
@@ -1253,30 +1259,31 @@ label {
 	}
 	.general {
 		display: block;
-		width: 100%;
+		width: 80%;
 		padding: 0 20px;
-		margin-left: 0;
+		margin-left: 80px;
 		height: 180vh;
+
 	}
 	.links {
 		display: block;
-		width: 100%;
+		width: 80%;
 		padding: 0 20px;
 		height: 120vh;
 	}
-	#scroll-links {
+	#scrolllinks {
 		table {
 			tr {
 				height: 6vh;
-				width: 120%;
+				width: 100%;
 			}
 		}
 	}
-	#scroll-banners {
+	#scrollbanners {
 		table {
 			tr {
 				height: 7vh;
-				width: 120%;
+				width: 100%; 
 			}
 		}
 	}
@@ -1321,19 +1328,19 @@ label {
 		float: none;
 	}
 	.banners {
-		width: 100%;
+		width: 80%;
 		height: 100vh;
 	}
 	.detailsta {
-		width: 100%;
+		width: 80%;
 		height: 140vh;
 	}
 	.payouthis {
-		width: 100%;
+		width: 80%;
 		height: 140vh;
 	}
 	.formdata {
-		width: 100%;
+		width: 80%;
 	}
 	[class*="col-"] {
     	width: 100%;
@@ -1366,8 +1373,8 @@ label {
   		display:         flex;
   		-webkit-align-items: center;
           align-items: center;
-  		-webkit-justify-content: flex-end;
-          justify-content: flex-end;
+  		-webkit-justify-content: center;
+          justify-content: center;
 	}
 }
 

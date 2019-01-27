@@ -397,9 +397,6 @@ body {
     float: right;
     list-style-type: none;
     margin-bottom: 15px; }
-    .nav ul:hover:before {
-      height: 50px;
-      border-left: 3px solid #F58220; }
   .nav ul li {
     display: inline-block;
     position: relative;
@@ -420,7 +417,9 @@ body {
     .nav ul ul li:hover:before {
       content: "";
       position: absolute;
-      height: 40px;
+      top: 0;
+      left: 0;
+      bottom: 0;
       width: 3px;
       background-color: #F58220;
       margin: 0 auto; }
@@ -603,7 +602,7 @@ hr {
 .links {
   height: 120vh; }
 
-#scroll-links, #scroll-banners, #scroll-payout, #scroll-detailsta {
+#scrolllinks, #scrollbanners, #scrollpayout, #scrolldetailsta {
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: center;
@@ -613,12 +612,12 @@ hr {
   flex: 100%;
   padding: 5px;
   margin-bottom: 10px; }
-  #scroll-links table, #scroll-banners table, #scroll-payout table, #scroll-detailsta table {
+  #scrolllinks table, #scrollbanners table, #scrollpayout table, #scrolldetailsta table {
     font-size: 15px;
     margin: 10 auto;
     margin-left: 150px;
     width: 800px; }
-    #scroll-links table tr, #scroll-banners table tr, #scroll-payout table tr, #scroll-detailsta table tr {
+    #scrolllinks table tr, #scrollbanners table tr, #scrollpayout table tr, #scrolldetailsta table tr {
       display: -webkit-flex;
       display: flex;
       -webkit-justify-content: space-between;
@@ -626,9 +625,13 @@ hr {
       width: 700px;
       border-top: 1px solid #d9d9d9;
       border-bottom: 1px solid #d9d9d9; }
-      #scroll-links table tr:hover, #scroll-banners table tr:hover, #scroll-payout table tr:hover, #scroll-detailsta table tr:hover {
+      #scrolllinks table tr:hover, #scrollbanners table tr:hover, #scrollpayout table tr:hover, #scrolldetailsta table tr:hover {
         background-color: #d9d9d9; }
-    #scroll-links table td, #scroll-banners table td, #scroll-payout table td, #scroll-detailsta table td {
+        #scrolllinks table tr:hover .waste, #scrollbanners table tr:hover .waste, #scrollpayout table tr:hover .waste, #scrolldetailsta table tr:hover .waste {
+          display: block; }
+      #scrolllinks table tr .waste, #scrollbanners table tr .waste, #scrollpayout table tr .waste, #scrolldetailsta table tr .waste {
+        display: none; }
+    #scrolllinks table td, #scrollbanners table td, #scrollpayout table td, #scrolldetailsta table td {
       text-align: left;
       vertical-align: inherit;
       color: #979797;
@@ -636,16 +639,16 @@ hr {
       display: flex;
       -webkit-align-items: space-between;
       align-items: space-between; }
-      #scroll-links table td a, #scroll-banners table td a, #scroll-payout table td a, #scroll-detailsta table td a {
+      #scrolllinks table td a, #scrollbanners table td a, #scrollpayout table td a, #scrolldetailsta table td a {
         text-align: left;
         text-decoration: none;
         color: #56819F; }
-        #scroll-links table td a:hover, #scroll-banners table td a:hover, #scroll-payout table td a:hover, #scroll-detailsta table td a:hover, #scroll-links table td a:after, #scroll-banners table td a:after, #scroll-payout table td a:after, #scroll-detailsta table td a:after {
+        #scrolllinks table td a:hover, #scrollbanners table td a:hover, #scrollpayout table td a:hover, #scrolldetailsta table td a:hover, #scrolllinks table td a:after, #scrollbanners table td a:after, #scrollpayout table td a:after, #scrolldetailsta table td a:after {
           content: "";
           position: absolute;
           top: 10px;
           left: 30px; }
-          #scroll-links table td a:hover .connect, #scroll-banners table td a:hover .connect, #scroll-payout table td a:hover .connect, #scroll-detailsta table td a:hover .connect, #scroll-links table td a:after .connect, #scroll-banners table td a:after .connect, #scroll-payout table td a:after .connect, #scroll-detailsta table td a:after .connect {
+          #scrolllinks table td a:hover .connect, #scrollbanners table td a:hover .connect, #scrollpayout table td a:hover .connect, #scrolldetailsta table td a:hover .connect, #scrolllinks table td a:after .connect, #scrollbanners table td a:after .connect, #scrollpayout table td a:after .connect, #scrolldetailsta table td a:after .connect {
             visibility: visible; }
 
 .banners {
@@ -654,27 +657,27 @@ hr {
   .banners.show {
     display: flex; }
 
-#scroll-payout table td {
+#scrollpayout table td {
   padding: 5px;
   font-size: 12px;
   text-align: center;
   width: 10wd; }
-#scroll-payout table th {
+#scrollpayout table th {
   padding: 5px;
   width: 10wd; }
-  #scroll-payout table th:hover {
+  #scrollpayout table th:hover {
     background-color: #F5F5F2;
     color: black; }
-  #scroll-payout table th a {
+  #scrollpayout table th a {
     text-decoration: none;
     color: #979797;
     font-size: 12px;
     width: 10wd;
     text-align: center; }
-    #scroll-payout table th a:hover {
+    #scrollpayout table th a:hover {
       background-color: #F5F5F2;
       color: black; }
-#scroll-payout table tr {
+#scrollpayout table tr {
   color: black;
   height: 8vh;
   width: 920px;
@@ -682,27 +685,27 @@ hr {
   padding: 0;
   border-top: none; }
 
-#scroll-detailsta table td {
+#scrolldetailsta table td {
   padding: 5px;
   font-size: 12px;
   text-align: center;
   width: 10wd; }
-#scroll-detailsta table th {
+#scrolldetailsta table th {
   padding: 5px;
   width: 10wd; }
-  #scroll-detailsta table th:hover {
+  #scrolldetailsta table th:hover {
     background-color: #F5F5F2;
     color: black; }
-  #scroll-detailsta table th a {
+  #scrolldetailsta table th a {
     text-decoration: none;
     color: #979797;
     font-size: 12px;
     width: 10wd;
     text-align: center; }
-    #scroll-detailsta table th a:hover {
+    #scrolldetailsta table th a:hover {
       background-color: #F5F5F2;
       color: black; }
-#scroll-detailsta table tr {
+#scrolldetailsta table tr {
   color: black;
   height: 8vh;
   width: 920px;
@@ -1501,17 +1504,24 @@ col-lg-12 {
     margin: 0; }
 
   .topbar {
-    margin-bottom: 10px;
-    display: inline-block;
-    width: 100%; }
+    display: block;
+    width: 15%; }
+
+  .hamburger {
+    display: none; }
+    .hamburger.show {
+      display: block; }
 
   #sidebar {
     display: none;
     text-align: center; }
+    #sidebar.show {
+      display: block; }
 
   .nav {
     display: none;
-    text-align: center; }
+    text-align: center;
+    width: 15%; }
     .nav.show {
       display: block; }
     .nav ul {
@@ -1547,9 +1557,6 @@ col-lg-12 {
       display: block;
       float: none; }
 
-  .hamburger {
-    display: block; }
-
   .manager {
     display: block;
     text-align: center; }
@@ -1572,24 +1579,24 @@ col-lg-12 {
 
   .general, .links, .banners, .detailsta, .payouthis, .formdata {
     display: block;
-    width: 100%;
+    width: 80%;
     padding: 0 20px;
-    margin-left: 0;
+    margin-left: 80px;
     height: 180vh; }
 
   .links {
     display: block;
-    width: 100%;
+    width: 80%;
     padding: 0 20px;
     height: 120vh; }
 
-  #scroll-links table tr, #scroll-banners table tr, #scroll-payout table tr, #scroll-detailsta table tr {
+  #scrolllinks table tr, #scrollbanners table tr, #scrollpayout table tr, #scrolldetailsta table tr {
     height: 6vh;
-    width: 120%; }
+    width: 100%; }
 
-  #scroll-banners table tr {
+  #scrollbanners table tr {
     height: 7vh;
-    width: 120%; }
+    width: 100%; }
 
   .timeline {
     display: block; }
@@ -1629,19 +1636,19 @@ col-lg-12 {
     float: none; }
 
   .banners {
-    width: 100%;
+    width: 80%;
     height: 100vh; }
 
   .detailsta {
-    width: 100%;
+    width: 80%;
     height: 140vh; }
 
   .payouthis {
-    width: 100%;
+    width: 80%;
     height: 140vh; }
 
   .formdata {
-    width: 100%; }
+    width: 80%; }
 
   [class*="col-"] {
     width: 100%;
@@ -1670,8 +1677,8 @@ col-lg-12 {
     display: flex;
     -webkit-align-items: center;
     align-items: center;
-    -webkit-justify-content: flex-end;
-    justify-content: flex-end; } }
+    -webkit-justify-content: center;
+    justify-content: center; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .col-md-1 {
     flex: 0 0 8.3333333333%;
