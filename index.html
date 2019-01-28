@@ -12,7 +12,7 @@
     <div id="sidebar">
       <div class="row">
         <div class="col-2 col-sm-2 col-xl-2 left nav">
-          <ul clearfix>
+          <ul>
             <li>
               <a href ="#"><h1>Just do it!<button class="hamburger"></button></h1></a>
             </li>
@@ -168,7 +168,7 @@
               <h4>Earnings chart</h4>
             </div>
           </div>
-          <div class="buttons">
+          <div class="circles">
             <div class="col col-sm-12 col-xl-9">
               <button class="signups">Signups
                 <div class="bluecircle"></div>
@@ -561,17 +561,19 @@
               <div class="col col-sm-11 scroll-wrapper" id="scrolldetailsta">
                 <table>
                   <thead>
-                    <th><a href="#">Tracker name</a></th>
-                    <th><a href="#">Initited date</a></th>
-                    <th><a href="#">Visits</a></th>
-                    <th><a href="#">Unique</a></th>
-                    <th><a href="#">Signups</a></th>
-                    <th><a href="#">FTD</a></th>
-                    <th><a href="#">Depositors</a></th>
-                    <th><a href="#">Deposits ($)</a></th>
-                    <th><a href="#">Payout ($)</a></th>
-                    <th><a href="#">Turnover</a></th>
-                    <th><a href="#">Deal</a></th>
+                    <tr>
+                      <th><a href="#">Tracker name</a></th>
+                      <th><a href="#">Initited date</a></th>
+                      <th><a href="#">Visits</a></th>
+                      <th><a href="#">Unique</a></th>
+                      <th><a href="#">Signups</a></th>
+                      <th><a href="#">FTD</a></th>
+                      <th><a href="#">Depositors</a></th>
+                      <th><a href="#">Deposits ($)</a></th>
+                      <th><a href="#">Payout ($)</a></th>
+                      <th><a href="#">Turnover</a></th>
+                      <th><a href="#">Deal</a></th>
+                    </tr>
                   </thead>
                   <tbody>
                     <tr>
@@ -734,10 +736,12 @@
             <div class="scroll-wrapper" id="scrollpayout">
               <table>
                 <thead>
-                  <th><a href="#">Date</a></th>
-                  <th><a href="#">Amount ($)</a></th>
-                  <th><a href="#">Deal</a></th>
-                  <th><a href="#">Account</a></th>
+                  <tr>
+                    <th><a href="#">Date</a></th>
+                    <th><a href="#">Amount ($)</a></th>
+                    <th><a href="#">Deal</a></th>
+                    <th><a href="#">Account</a></th>
+                  </tr>
                 </thead>
                 <tbody>
                   <tr>
@@ -878,14 +882,14 @@
                 <div class="btn-close js--close-modal">x</div>
                   <h4>Do you really want to Quit?</h4>
                   <hr>
-                    <button class="cancel">Cancel</button>
-                    <button type="submit">Quit</button>
-                </div>
+                  <button class="cancel">Cancel</button>
+                  <button type="submit">Quit</button>
               </div>
             </div>
           </div>
         </div>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+      </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="js/skrypt.js"></script>
   </body>
 </html> 
